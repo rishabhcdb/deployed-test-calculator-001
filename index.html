@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        #display {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: right;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 23%;
+            margin: 2px;
+        }
+
+        .btn-equal {
+            width: 48%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="display" class="form-control" readonly>
+        <div class="d-grid gap-2">
+            <div class="row">
+                <button class="btn btn-light col-3" onclick="clearDisplay()">C</button>
+                <button class="btn btn-light col-3" onclick="backspace()">&#x232B;</button>
+                <button class="btn btn-light col-3" onclick="appendToDisplay('/')">/</button>
+                <button class="btn btn-light col-3" onclick="appendToDisplay('*')">*</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('7')">7</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('8')">8</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('9')">9</button>
+                <button class="btn btn-light col-3" onclick="appendToDisplay('-')">-</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('4')">4</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('5')">5</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('6')">6</button>
+                <button class="btn btn-light col-3" onclick="appendToDisplay('+')">+</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('1')">1</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('2')">2</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('3')">3</button>
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('0')">0</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-primary col-3" onclick="appendToDisplay('.')">.</button>
+                <button class="btn btn-success col-6" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
